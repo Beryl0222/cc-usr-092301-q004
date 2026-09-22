@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "event_id",
+    "kind",
+    "occurred_at",
+    "subject_id",
+    "version"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "occurred_at": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    }
+  }
+}

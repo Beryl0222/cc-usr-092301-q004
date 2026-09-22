@@ -1,0 +1,7 @@
+{
+  "event_id": "092301-004-sample",
+  "kind": "PLAN_FROZEN",
+  "occurred_at": "2026-09-22T10:00:00+08:00",
+  "subject_id": "clinical-agent-release-governance",
+  "version": 1
+}
