@@ -1,28 +1,70 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "临床智能体变更守门事件信封",
   "type": "object",
   "required": [
     "event_id",
     "kind",
     "occurred_at",
     "subject_id",
-    "version"
+    "version",
+    "payload"
   ],
   "properties": {
     "event_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "description": "全局唯一事件标识，仅追加、不可复用"
     },
     "kind": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "PURPOSE_REGISTERED",
+        "VERSION_CANDIDATE_REGISTERED",
+        "VALIDATION_SUBMITTED",
+        "VALIDATION_PASSED",
+        "VALIDATION_FAILED",
+        "COMMITTEE_DECISION",
+        "ROLLOUT_SCHEDULED",
+        "CANARY_STARTED",
+        "USE_ACTIVATED",
+        "EXPOSURE_RECORDED",
+        "DRIFT_SIGNAL_RAISED",
+        "DRIFT_CLASSIFIED",
+        "USE_BLOCKED",
+        "HUMAN_BACKUP_ENFORCED",
+        "ROLLBACK_INITIATED",
+        "ROLLBACK_COMPLETED",
+        "ADVERSE_EVENT_REPORTED",
+        "RECALL_DECIDED",
+        "USE_SUPERSEDED"
+      ]
     },
     "occurred_at": {
-      "type": "string"
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 且必须携带时区偏移"
     },
     "subject_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "version": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1,
+      "description": "同一 subject_id 内严格单调递增"
+    },
+    "actor": {
+      "type": "string",
+      "description": "命令执行人（登记岗/委员会批准人/运维/科室等）"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "payload": {
+      "type": "object",
+      "description": "事件业务负载；必填项随 kind 而定，见 src/events.py:REQUIRED_PAYLOAD。禁止携带任何患者身份字段，病例只允许去标识 case_ref。"
     }
-  }
+  },
+  "additionalProperties": false
 }

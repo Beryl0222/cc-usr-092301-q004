@@ -1,7 +1,28 @@
 {
-  "event_id": "092301-004-sample",
-  "kind": "PLAN_FROZEN",
+  "event_id": "purpose_registered-00001-a1b2c3d4",
+  "kind": "PURPOSE_REGISTERED",
   "occurred_at": "2026-09-22T10:00:00+08:00",
   "subject_id": "clinical-agent-release-governance",
-  "version": 1
+  "version": 1,
+  "actor": "registrar",
+  "payload": {
+    "use_id": "U-PED",
+    "agent": "radio-agent",
+    "intended_use": "儿科急诊影像危急值提示",
+    "risk_class": "HIGH_RISK",
+    "scope": {
+      "department": "儿科急诊",
+      "population": "0-14岁",
+      "device_protocol": "DEFAULT"
+    },
+    "key_subgroups": ["0-3岁", "4-14岁"],
+    "thresholds": {"sensitivity": 0.97},
+    "subgroup_thresholds": {"sensitivity": 0.97},
+    "review_mode": "REQUIRED",
+    "reviewer_role": "儿科急诊主治",
+    "data_purpose": "儿科急诊影像辅助验证",
+    "min_sample": 500,
+    "min_subgroup_sample": 100,
+    "physician_signoff_required": true
+  }
 }
